@@ -65,7 +65,7 @@ class GraphPrinter
     /**
      * @param string[] $userInputArray
      */
-    public function convertInputArrayToFloat(array &$userInputArray): void
+    private function convertInputArrayToFloat(array &$userInputArray): void
     {
         foreach ($userInputArray as $key => $value) {
             if (!is_numeric($value)) {
