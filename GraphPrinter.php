@@ -26,6 +26,7 @@ class GraphPrinter
 
     public function printGraph(): void
     {
+        $this->applyLogFuncToValues();
         $valuesDTO = GraphCalculationsHelper::getMinMaxValueDTO($this->values);
         $range = GraphCalculationsHelper::getRange($valuesDTO);
         $step = GraphCalculationsHelper::getStep($range, $this->stringSize);
@@ -73,5 +74,11 @@ class GraphPrinter
             }
             $userInputArray[$key] = (float)$value;
         }
+    }
+
+    // Needed to handle very big/small values among average ones
+    private function applyLogFuncToValues(): void
+    {
+        $this->values = array_map(function($a) {return log($a);}, $this->values);
     }
 }
